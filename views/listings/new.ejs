@@ -1,0 +1,93 @@
+<% layout("/layouts/boilerplate") %>
+    <div class="row mt-3">
+        <div class="col-8 offset-2"> <!-- Offset matlab left se thora space-->
+            <br /><br />
+            <h3>Create a New Listing</h3>
+            <form action="/listings" method="POST" class="needs-validation" novalidate enctype="multipart/form-data"><!--novalidate is for cancel out required attribute of html-->
+
+
+                <div class="title mb-3 mt-3">
+                    <lable for="title" class="form-label">Title</lable>
+                    <input name="listing[title]" placeholder="Add a catchy title" type="text" class="form-control" required>
+                    
+                    
+                    <div class="invalid-feedback">Please enter a valid title</div>
+                    <div class="valid-feedback">Title looks good</div>
+                </div>
+
+
+                <div class="textarea mt-3 mb-3">
+                    <lable for="description" class="form-label">Description</lable>
+                    <textarea area name="listing[description]" type="text" class="form-control" required></textarea>
+                
+                    
+                    <div class="invalid-feedback">Please enter a valid Description</div>
+                    <div class="valid-feedback">Description looks good</div>
+                
+                </div>
+
+
+                <!-- <div class="image mb-3">
+                    <lable for="image" class="form-label">Image Link</lable>
+                    <input name="image" placeholder="enter image URL/Link"  type="text"> link text type ka hoga   || OR 
+                    <input name="listing[image]" placeholder="enter image URL/Link" type="text" class="form-control">
+                
+                
+                    <div class="invalid-feedback">Please enter a valid Image Link</div>
+                    <div class="valid-feedback">Link looks good</div>
+                
+                </div> -->
+
+                <div class="image mb-3">
+                    <lable for="image" class="form-label">Upload Listing Image</lable>
+                    <!-- <input name="image" placeholder="enter image URL/Link"  type="text"> link text type ka hoga -->
+                    <input name="listing[image]" placeholder="enter image URL/Link" type="file" class="form-control" required>
+                
+                
+                    <div class="invalid-feedback">Please enter a valid Image </div>
+                    <div class="valid-feedback">Image looks good</div>
+                
+                </div>
+
+                <div class="row">
+
+                    <div class="price mb-3 col-md-4">
+                        <lable for="price" class="form-label">Price</lable>
+                        <input name="listing[price]" placeholder="enter price" type="number" class="form-control" required>
+                    
+                    
+                        <div class="invalid-feedback">Please enter a valid price</div>
+                    <div class="valid-feedback">Price looks good</div>
+                     </div>
+
+                    <div class="location mb-3 col-md-8">
+                        <lable for="location" class="form-label">Location</lable>
+                        <input name="listing[location]" placeholder="enter location" type="text" class="form-control" required>
+                    
+                    
+                        <div class="invalid-feedback">Please enter a valid Location</div>
+                    <div class="valid-feedback">Location looks good</div>
+                    
+                    </div>
+
+                </div>
+                <div class="country mb-3">
+                    <lable for="location" class="form-label">Country</lable>
+                    <input name="listing[country]" placeholder="enter country" type="text" class="form-control" required>
+                
+                
+                
+                    <div class="invalid-feedback">Country name should be valid </div>
+                    <div class="valid-feedback">Country looks good</div>
+                </div>
+
+
+                
+                <button class="btn btn-dark add-btn mt-3 mb-3">Add</button>
+                <br />   <br /><br />
+            </form>
+
+
+
+        </div>
+    </div>

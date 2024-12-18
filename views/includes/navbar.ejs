@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+    <!-- Brand Logo -->
+    <a class="navbar-brand" href="/"><i class="fa-regular fa-compass"></i></a>
+    
+    <!-- Navbar Toggler (for small screens) -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <!-- Navbar Content -->
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <!-- Left-aligned Links with Advanced Styling -->
+      <div class="navbar-nav">
+        <a class="nav-link animated-link" href="/">Home</a>    
+        <a class="nav-link animated-link" href="/listings">All Listings</a>
+        <a class="nav-link animated-link" href="/listings/new">Add New Listing</a>
+      </div>
+
+      <!-- Right-aligned Buttons (Login, Sign Up, Logout) -->
+      <div class="navbar-nav ms-auto">
+        <% if (!currUser){%>
+        <a class="btn btn-outline-primary me-2" href="/login">Login</a>
+        <a class="btn btn-primary me-2" href="/signup">Sign Up</a>
+        <%}%>
+        <% if (currUser){%>
+        <a class="btn btn-danger" href="/logout">Logout</a>
+        <%}%>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
