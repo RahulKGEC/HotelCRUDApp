@@ -97,14 +97,15 @@ module.exports.updateListing = async (req, res) => {
     let { id } = req.params;
     //console.log(id)
 
+    let listing = await Listing.findByIdAndUpdate(id, { ...req.body.listing });
 
     if (typeof req.file !== "undefined") {  // agar edit ke samay || photo ko edit agar nahi kiya gaya to 
-        let listing = await Listing.findByIdAndUpdate(id, { ...req.body.listing });
         const { path: url, filename } = req.file;
         listing.image = { url, filename };
         await listing.save();
+    }else{
+    await listing.save();
     }
-
 
     //jidhar man udhar redirect karo
     //res.redirect("/listings");
@@ -112,8 +113,37 @@ module.exports.updateListing = async (req, res) => {
     res.redirect(`/listings/${id}`);
 }
 
-
-
+//CHATGPT CODE-----
+// module.exports.updateListing = async (req, res) => {
+//     try {
+//       let { id } = req.params;
+//       console.log("Listing ID:", id);
+  
+//       let listing = await Listing.findById(id);
+//       if (!listing) {
+//         req.flash("error", "Listing not found!");
+//         return res.redirect("/listings");
+//       }
+  
+//       if (typeof req.file !== "undefined") {
+//         console.log("Updating image...");
+//         const { path: url, filename } = req.file;
+//         listing.image = { url, filename };
+//       }
+  
+//       console.log("Updating listing details...");
+//       await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+//       await listing.save();
+  
+//       req.flash("success", "Listing Updated!");
+//       res.redirect(`/listings/${id}`);
+//     } catch (err) {
+//       console.error("Error updating listing:", err);
+//       req.flash("error", "An error occurred while updating the listing.");
+//       res.redirect("/listings");
+//     }
+//   };
+  
 
 
 

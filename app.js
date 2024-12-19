@@ -26,6 +26,7 @@ const userRouter = require("./routes/user.js");
 
 const methodOverride = require("method-override");
 const session = require("express-session");
+const MongoStore = require('connect-mongo')
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -40,8 +41,12 @@ main()
   })
   .catch((err) => console.log(err));
 
+
+
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/wanderlust");
+  // await mongoose.connect("mongodb://127.0.0.1:27017/wanderlust");//local database se connect karne ke liye 
+  await mongoose.connect(process.env.ATLASDB_URL);   // mongodb atlas cloud se connect karne ke liye
+
 }
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -49,15 +54,29 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname, "/public")))// static file ko use karne ke liye
-app.get("/", (req, res) => {
-  res.send("Hi , I am root");
+
+
+// app.get("/", (req, res) => {
+//   res.send("Hi , I am root");
+// })
+
+
+// for session related information storage
+const store = MongoStore.create({     //to create mongo store
+  mongoUrl: process.env.ATLASDB_URL,
+  crypto: {
+    secret: process.env.SECRET,
+  },
+  touchAfter: 24 * 3600    // it is in seconds
+}) 
+
+store.on("error", ()=>{
+  console.log("Error in Mongo Session Store", err);
 })
-
-
-
-
+// ab hamare session ki information atlas database me online store hoga jiska url diya gaya hai
 const sessionOptions = {
-  secret: "mysupersecretcode",
+  store : store,// mongo store related information which is going to our session
+  secret: process.env.SECRET ,
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -66,6 +85,7 @@ const sessionOptions = {
     expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
   },
 };
+
 
 
 

@@ -1,34 +1,65 @@
+<style>
+  .search-input{
+    border-radius: 25px;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+  }
+  .btn-search{
+    background-color: #fe424d;
+    color:#fff !important; 
+    border-radius: 25px;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+  }
+  .btn-search:hover{
+   background-color: #fe424d !important;
+   color:#fff !important;
+  }
+  .bu32{
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+  }
+</style>
+
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
   <div class="container-fluid">
     <!-- Brand Logo -->
-    <a class="navbar-brand" href="/"><i class="fa-regular fa-compass"></i></a>
-    
+    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+
     <!-- Navbar Toggler (for small screens) -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    
+
     <!-- Navbar Content -->
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <!-- Left-aligned Links with Advanced Styling -->
       <div class="navbar-nav">
-        <a class="nav-link animated-link" href="/">Home</a>    
-        <a class="nav-link animated-link" href="/listings">All Listings</a>
-        <a class="nav-link animated-link" href="/listings/new">Add New Listing</a>
+        <!-- <a class="nav-link animated-link" href="/">Home</a>     -->
+        <a class="nav-link animated-link" href="/listings">Explore</a>
+      </div>
+      <div class="navbar-nav ms-auto">
+        <form class="d-flex" role="search">
+          <input class="form-control me-2 search-input" type="search" placeholder="Search destination" aria-label="Search">
+          <button class="btn btn-search bu32" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+        </form>
       </div>
 
+
       <!-- Right-aligned Buttons (Login, Sign Up, Logout) -->
-      <div class="navbar-nav ms-auto">
+      <!-- <div class="navbar-nav ms-auto"> -->
+      <div class="navbar-nav ms-auto" style="margin-right: 1rem;">
+
+        <a class="nav-link animated-link" href="/listings/new" style="margin-right:1rem;">Add New Listing</a>
+        <!-- Current User is Loggedin Or NOT....... Than it will show button  -->
         <% if (!currUser){%>
-        <a class="btn btn-outline-primary me-2" href="/login">Login</a>
-        <a class="btn btn-primary me-2" href="/signup">Sign Up</a>
-        <%}%>
-        <% if (currUser){%>
-        <a class="btn btn-danger" href="/logout">Logout</a>
-        <%}%>
+          <a class="btn btn-outline-primary me-2" href="/login"><b>Login</b></a>
+          <a class="btn btn-primary me-2" href="/signup"><b>Sign Up</b></a>
+          <%}%>
+            <% if (currUser){%>
+              <a class="btn btn-danger" href="/logout"><b>Logout</b></a>
+              <%}%>
       </div>
     </div>
   </div>
 </nav>
-
-

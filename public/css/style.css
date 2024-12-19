@@ -52,9 +52,9 @@ body{
     content: '' !important;
     position: absolute !important;
     width: 100% !important;
-    height: 3px !important; /* Thickness of the underline */
+    min-height: 3px !important; /* Thickness of the underline */
     background: #007bff !important; /* Color of the underline */
-    bottom: -5px !important; /* Position it below the text */
+    bottom: -3px !important; /* Position it below the text */
     left: 0 !important;
     transform: scaleX(0) !important; /* Initially hidden */
     transition: transform 0.3s ease !important; /* Smooth animation */
